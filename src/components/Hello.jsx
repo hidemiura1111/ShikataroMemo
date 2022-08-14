@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-function Hello() {
+function Hello(props) {
+  const children = props.children;
   return (
     <View>
-      <Text style={styles.text}>Hello</Text>
+      <Text style={styles.text}>Hello {children}</Text>
     </View>
   );
 }
