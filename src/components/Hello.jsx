@@ -5,13 +5,15 @@ function Hello(props) {
   const { children } = props;
   return (
     <View>
-      <Text style={styles.text}>Hello {children}</Text>
+      <Text style={styles.text}>
+        {`Hello ${children}`}
+      </Text>
     </View>
   );
 }
 
 Hello.propTypes = {
-  children: string,
+  children: string.isRequired,
 };
 
 const styles = StyleSheet.create({
