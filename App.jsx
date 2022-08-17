@@ -1,4 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 // import React from 'react'; // No need it current version of React Native
 
@@ -7,10 +7,10 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <View>
-        <View>
-          <Text>AnnoyingMemo App</Text>
-          <Text>Log out</Text>
+      <View style={styles.appbar}>
+        <View style={styles.appbarInner}>
+          <Text style={styles.appbarTitle}>AnnoyingMemo</Text>
+          <Text style={styles.appbarRight}>Log out</Text>
         </View>
       </View>
 
@@ -61,8 +61,28 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F0F4F8',
+  },
+  appbar: {
+    width: '100%',
+    height: 104,
+    backgroundColor: '#467FD3',
+    justifyContent: 'flex-end',
+  },
+  appbarInner: {
     alignItems: 'center',
-    justifyContent: 'center',
+  },
+  appbarRight: {
+    position: 'absolute',
+    right: 19,
+    bottom: 16,
+    color: 'rgba(255, 255, 255, 0.8)',
+  },
+  appbarTitle: {
+    marginBottom: 8,
+    fontSize: 22,
+    lineHeight: 32,
+    color: '#ffffff',
+    fontWeight: 'bold',
   },
 });
