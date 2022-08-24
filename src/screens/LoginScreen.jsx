@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import AppBar from '../components/AppBar';
+import Button from '../components/Button';
 
 export default function LoginScreen() {
   return (
@@ -10,9 +11,7 @@ export default function LoginScreen() {
         <Text style={styles.title}>Login</Text>
         <TextInput style={styles.input} value="Email Address" />
         <TextInput style={styles.input} value="Password" />
-        <View style={styles.buttonContainer}>
-          <Text style={styles.buttonLabel}>Submit</Text>
-        </View>
+        <Button label="Submit" />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not Registered?</Text>
           <Text style={styles.footerLink}>Sign yp here!</Text>
@@ -45,19 +44,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 8,
     marginBottom: 16,
-  },
-  buttonContainer: {
-    backgroundColor: '#467FD3',
-    borderRadius: 4,
-    alignSelf: 'flex-start',
-    marginBottom: 24,
-  },
-  buttonLabel: {
-    fontSize: 16,
-    lineHeight: 32,
-    paddingVertical: 8,
-    paddingHorizontal: 32,
-    color: '#FFFFFF',
   },
   footer: {
     flexDirection: 'row',
