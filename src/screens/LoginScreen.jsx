@@ -11,6 +11,13 @@ export default function LoginScreen() {
         <TextInput value="Email Address" />
         <TextInput value="Password" />
       </View>
+      <View>
+        <Text>Submit</Text>
+      </View>
+      <View>
+        <Text>Not Registered?</Text>
+        <Text>Sign yp here!</Text>
+      </View>
     </View>
   );
 }
