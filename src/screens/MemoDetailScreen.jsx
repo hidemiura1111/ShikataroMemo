@@ -17,7 +17,7 @@ export default function MemoDetailScreen() {
           - Bread!!
         </Text>
       </ScrollView>
-      <CircleButton style={{ top: 160, bottom: 'auto' }} name="edit-3" />
+      <CircleButton style={{ top: 60, bottom: 'auto' }} name="edit-3" />
     </View>
   );
 }
