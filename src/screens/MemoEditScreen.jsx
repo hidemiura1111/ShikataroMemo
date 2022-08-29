@@ -1,12 +1,10 @@
 import { StyleSheet, Text, TextInput, View, Alert } from 'react-native';
 
-import AppBar from '../components/AppBar';
 import CircleButton from '../components/CircleButton';
 
 export default function MemoEditScreen() {
   return (
     <View style={styles.container}>
-      <AppBar />
       <View style={styles.inputContainer}>
         <TextInput value="Shopping Lits" multiline style={styles.input} />
       </View>

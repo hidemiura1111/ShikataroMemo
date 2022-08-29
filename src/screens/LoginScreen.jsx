@@ -1,12 +1,10 @@
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 
-import AppBar from '../components/AppBar';
 import Button from '../components/Button';
 
 export default function LoginScreen() {
   return (
     <View style={styles.container}>
-      <AppBar />
       <View style={styles.inner}>
         <Text style={styles.title}>Login</Text>
         <TextInput style={styles.input} value="Email Address" />

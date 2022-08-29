@@ -1,12 +1,10 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
-import AppBar from '../components/AppBar';
 import CircleButton from '../components/CircleButton';
 
 export default function MemoDetailScreen() {
   return (
     <View style={styles.container}>
-      <AppBar />
       <View style={styles.memoHeader}>
         <Text style={styles.memoTitle}>Shopping List</Text>
         <Text style={styles.memoDate}>10:13 17 Aug 2022</Text>
