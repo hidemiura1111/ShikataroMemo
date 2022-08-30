@@ -22,7 +22,14 @@ export default function LoginScreen(props) {
         />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not Registered?</Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.reset({
+                index: 0,
+                routes: [{ name: 'SignUp' }],
+              });
+            }}
+          >
             <Text style={styles.footerLink}>Sign yp here!</Text>
           </TouchableOpacity>
         </View>
