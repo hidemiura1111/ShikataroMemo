@@ -2,14 +2,19 @@ import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-nativ
 
 import Button from '../components/Button';
 
-export default function LoginScreen() {
+export default function LoginScreen(props) {
+  const { navigation } = props;
+
   return (
     <View style={styles.container}>
       <View style={styles.inner}>
         <Text style={styles.title}>Login</Text>
         <TextInput style={styles.input} value="Email Address" />
         <TextInput style={styles.input} value="Password" />
-        <Button label="Submit" />
+        <Button
+          label="Submit"
+          onPress={() => { navigation.navigate('MemoList'); }}
+        />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not Registered?</Text>
           <TouchableOpacity>

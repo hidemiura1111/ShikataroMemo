@@ -1,14 +1,19 @@
-import { StyleSheet, Text, TextInput, View, Alert } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 
 import CircleButton from '../components/CircleButton';
 
-export default function MemoEditScreen() {
+export default function MemoEditScreen(props) {
+  const { navigation } = props;
+
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput value="Shopping Lits" multiline style={styles.input} />
       </View>
-      <CircleButton name="check" onPress={() => { Alert.alert('Pressed') }} />
+      <CircleButton
+        name="check"
+        onPress={() => { navigation.goBack(); }}
+      />
     </View>
   );
 }
