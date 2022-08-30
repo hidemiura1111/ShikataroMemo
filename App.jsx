@@ -20,6 +20,8 @@ export default function App() {
           headerStyle: { backgroundColor: '#467FD3' },
           headerTitleStyle: { color: '#ffffff' },
           headerTitle: 'AnnoyingMemo',
+          headerTintColor: '#ffffff',
+          headerBackTitle: 'Back', // No need in Android App
         }}
       >
         <Stack.Screen name="MemoList" component={MemoListScreen} />
