@@ -13,3 +13,4 @@ Guides: https://docs.expo.dev/guides/icons/
 List: https://icons.expo.fyi/
 ### Firebase
 Version 8.10.0
+**Task** It maybe not able to use Version 9~, and Version 8 causes of a warning Expo. It will not be supported by Expo.
