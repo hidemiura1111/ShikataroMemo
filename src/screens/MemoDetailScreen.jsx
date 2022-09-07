@@ -1,22 +1,45 @@
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { useEffect, useState } from 'react';
+import { shape, string } from 'prop-types';
+import firebase from 'firebase';
 
 import CircleButton from '../components/CircleButton';
 
 export default function MemoDetailScreen(props) {
-  const { navigation } = props;
+  const { navigation, route } = props;
+  const { id } = route.params;
+  const [memo, setMemo] = useState(null);
+
+  useEffect(() => {
+    const { currentUser } = firebase.auth();
+    let unsubscribe = () => { };
+
+    if (currentUser) {
+      const db = firebase.firestore();
+      const ref = db.collection(`users/${currentUser.uid}/memos`).doc(id);
+      unsubscribe = ref.onSnapshot((doc) => {
+        const data = doc.data();
+        setMemo({
+          id: doc.id,
+          bodyText: data.bodyText,
+          updatedAt: data.updatedAt.toDate(),
+        });
+      }, (error) => {
+        Alert.alert('Fail to read memo');
+      });
+    }
+    return unsubscribe;
+  }, []);
 
   return (
     <View style={styles.container}>
       <View style={styles.memoHeader}>
-        <Text style={styles.memoTitle}>Shopping List</Text>
-        <Text style={styles.memoDate}>10:13 17 Aug 2022</Text>
+        <Text style={styles.memoTitle} numberOfLines={1}>{memo && memo.bodyText}</Text>
+        <Text style={styles.memoDate}>{memo && String(memo.updatedAt)}</Text>
       </View>
       <ScrollView style={styles.memoBody}>
         <Text style={styles.memoText}>
-          I want buy these items:
-          - Eggs
-          - Milk
-          - Bread!!
+          {memo && memo.bodyText}
         </Text>
       </ScrollView>
       <CircleButton
@@ -27,6 +50,12 @@ export default function MemoDetailScreen(props) {
     </View>
   );
 }
+
+MemoDetailScreen.propTypes = {
+  route: shape({
+    params: shape({ id: string }),
+  }).isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {
