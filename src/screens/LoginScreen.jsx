@@ -68,11 +68,11 @@ export default function LoginScreen(props) {
             onPress={() => {
               navigation.reset({
                 index: 0,
-                routes: [{ name: 'Login' }],
+                routes: [{ name: 'SignUp' }],
               });
             }}
           >
-            <Text style={styles.footerLink}>Sign yp here!</Text>
+            <Text style={styles.footerLink}>Sign up here!</Text>
           </TouchableOpacity>
         </View>
       </View>
