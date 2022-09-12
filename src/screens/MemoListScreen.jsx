@@ -6,10 +6,12 @@ import MemoList from '../components/MemoList';
 import CircleButton from '../components/CircleButton';
 import LogoutButton from '../components/LogoutButton';
 import Button from '../components/Button';
+import Loading from '../components/Loading';
 
 export default function MemoListScreen(props) {
   const { navigation } = props;
   const [memos, setMemos] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Logout Button
   useEffect(() => {
@@ -25,6 +27,7 @@ export default function MemoListScreen(props) {
     let unsubscribe = () => { };
 
     if (currentUser) {
+      setIsLoading(true);
       const ref = db.collection(`users/${currentUser.uid}/memos`).orderBy('updatedAt', 'desc');
       unsubscribe = ref.onSnapshot((snapshot) => {
         const userMemos = [];
@@ -37,7 +40,9 @@ export default function MemoListScreen(props) {
           });
         });
         setMemos(userMemos);
+        setIsLoading(false);
       }, (error) => {
+        setIsLoading(false);
         Alert.alert('Fail to read memo');
       });
     }
@@ -48,6 +53,7 @@ export default function MemoListScreen(props) {
   if (memos.length === 0) {
     return (
       <View style={emptyStyles.container}>
+        <Loading isLoading={false} />
         <View style={emptyStyles.inner}>
           <Text style={emptyStyles.title}>Let's create first memo!!</Text>
           <Button
