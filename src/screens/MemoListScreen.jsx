@@ -29,6 +29,8 @@ export default function MemoListScreen(props) {
     if (currentUser) {
       setIsLoading(true);
       const ref = db.collection(`users/${currentUser.uid}/memos`).orderBy('updatedAt', 'desc');
+      // Test to access with hard coded user id
+      // const ref = db.collection(`users/sC9fOZsKzhTjwmic9j1S9jBL7WJ3/memos`).orderBy('updatedAt', 'desc');
       unsubscribe = ref.onSnapshot((snapshot) => {
         const userMemos = [];
         snapshot.forEach((doc) => {
