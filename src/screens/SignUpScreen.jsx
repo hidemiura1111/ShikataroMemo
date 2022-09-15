@@ -4,6 +4,7 @@ import firebase from 'firebase';
 
 import Button from '../components/Button';
 import Loading from '../components/Loading';
+import { translateErrors } from '../utilities';
 
 export default function SignUpScreen(props) {
   const { navigation } = props;
@@ -22,7 +23,8 @@ export default function SignUpScreen(props) {
         });
       })
       .catch((error) => {
-        Alert.alert(error.code);
+        const errorMessage = translateErrors(error.code);
+        Alert.alert(errorMessage.title, errorMessage.description);
       })
       .then(() => {
         setIsLoading(false);

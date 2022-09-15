@@ -23,7 +23,7 @@ export default function MemoEditScreen(props) {
           navigation.goBack();
         })
         .catch(() => {
-          Alert.alert('Fail to update memo');
+          Alert.alert('Error', 'Fail to update memo');
         });
     }
   }

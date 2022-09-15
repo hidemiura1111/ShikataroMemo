@@ -6,28 +6,28 @@ export function dateToString(date) {
 }
 
 export function translateErrors(code) {
-  const error = { title: 'Error', detail: 'Please try again later' };
+  const error = { title: 'Error', description: 'Please try again later' };
   switch (code) {
     case 'auth/invalid-email':
-      error.detail = 'Invalid email';
+      error.description = 'Invalid email';
       break;
     case 'auth/user-disabled':
-      error.detail = 'User disabled';
+      error.description = 'User disabled';
       break;
     case 'auth/user-not-found':
-      error.detail = 'User not found';
+      error.description = 'User not found';
       break;
     case 'auth/wrong-password':
-      error.detail = 'Wrong password';
+      error.description = 'Wrong password';
       break;
     case 'auth/email-already-in-use':
-      error.detail = 'Email already in use';
+      error.description = 'Email already in use';
       break;
     case 'auth/operaion-not-allowed':
-      error.detail = 'Operation not allowed';
+      error.description = 'Operation not allowed';
       break;
     case 'auth/weak-password':
-      error.detail = 'Weak password';
+      error.description = 'Weak password';
       break;
     default:
   }
