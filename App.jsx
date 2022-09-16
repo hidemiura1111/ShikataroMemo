@@ -1,4 +1,5 @@
 import React from 'react'; // No need it current version of React Native
+import { LogBox } from 'react-native';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
 import firebase from 'firebase';
@@ -19,6 +20,7 @@ if (firebase.apps.length === 0) {
 }
 
 const Stack = createStackNavigator();
+LogBox.ignoreLogs(['AsyncStorage has been extracted from react-native core']);
 
 export default function App() {
   return (
