@@ -1,7 +1,11 @@
 import { Feather } from '@expo/vector-icons';
-import { StyleSheet, Text, View, TouchableOpacity, Alert, FlatList } from 'react-native';
+import {
+  StyleSheet, Text, View, TouchableOpacity, Alert, FlatList,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { shape, string, instanceOf, arrayOf } from 'prop-types';
+import {
+  shape, string, instanceOf, arrayOf,
+} from 'prop-types';
 import firebase from 'firebase';
 
 import { dateToString } from '../utilities';

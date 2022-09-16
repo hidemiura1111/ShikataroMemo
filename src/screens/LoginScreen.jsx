@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert } from 'react-native';
+import {
+  StyleSheet, Text, TextInput, View, TouchableOpacity, Alert,
+} from 'react-native';
 import firebase from 'firebase';
 
 import Button from '../components/Button';
@@ -30,8 +32,7 @@ export default function LoginScreen(props) {
   function handlePress() {
     setIsLoading(true);
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        const { user } = userCredential;
+      .then(() => {
         navigation.reset({
           index: 0,
           routes: [{ name: 'MemoList' }],
@@ -129,4 +130,3 @@ const styles = StyleSheet.create({
     color: '#467FD3',
   },
 });
-

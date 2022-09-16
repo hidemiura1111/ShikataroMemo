@@ -15,12 +15,12 @@ CircleButton.propTypes = {
   style: shape(),
   name: string.isRequired,
   onPress: func,
-}
+};
 
 CircleButton.defaultProps = {
   style: null,
   onPress: null,
-}
+};
 
 const styles = StyleSheet.create({
   circleButton: {

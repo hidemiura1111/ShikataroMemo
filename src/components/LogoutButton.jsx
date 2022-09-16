@@ -1,6 +1,8 @@
-import { TouchableOpacity, Text, StyleSheet, Alert } from "react-native";
-import firebase from "firebase";
-import { useNavigation } from "@react-navigation/native";
+import {
+  TouchableOpacity, Text, StyleSheet, Alert,
+} from 'react-native';
+import firebase from 'firebase';
+import { useNavigation } from '@react-navigation/native';
 
 export default function LogoutButton() {
   const navigation = useNavigation();
@@ -13,8 +15,7 @@ export default function LogoutButton() {
           routes: [{ name: 'Login' }],
         });
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         Alert.alert('Fail to logout.');
       });
   }
@@ -33,6 +34,6 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    color: "rgba(255, 255, 255, 0.7)",
+    color: 'rgba(255, 255, 255, 0.7)',
   },
 });

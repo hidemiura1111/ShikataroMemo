@@ -1,4 +1,6 @@
-import { StyleSheet, TextInput, View, Alert } from 'react-native';
+import {
+  StyleSheet, TextInput, View, Alert,
+} from 'react-native';
 import { useState } from 'react';
 import { shape, string } from 'prop-types';
 import firebase from 'firebase';

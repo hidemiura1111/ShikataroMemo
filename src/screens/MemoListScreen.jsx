@@ -1,4 +1,6 @@
-import { StyleSheet, View, Text, Alert } from 'react-native';
+import {
+  StyleSheet, View, Text, Alert,
+} from 'react-native';
 import { useEffect, useState } from 'react';
 import firebase from 'firebase';
 
@@ -43,7 +45,7 @@ export default function MemoListScreen(props) {
         });
         setMemos(userMemos);
         setIsLoading(false);
-      }, (error) => {
+      }, () => {
         setIsLoading(false);
         Alert.alert('Fail to read memo');
       });
@@ -57,7 +59,7 @@ export default function MemoListScreen(props) {
       <View style={emptyStyles.container}>
         <Loading isLoading={isLoading} />
         <View style={emptyStyles.inner}>
-          <Text style={emptyStyles.title}>Let's create first memo!!</Text>
+          <Text style={emptyStyles.title}>Let&apos;s create first memo!!</Text>
           <Button
             style={emptyStyles.button}
             label="Create Memo"

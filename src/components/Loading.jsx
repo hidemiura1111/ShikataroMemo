@@ -1,5 +1,5 @@
-import { View, StyleSheet, ActivityIndicator } from "react-native";
-import bool from "prop-types";
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import bool from 'prop-types';
 
 export default function Loading(props) {
   const { isLoading } = props;
@@ -26,16 +26,16 @@ Loading.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
     top: 0,
     right: 0,
     bottom: 0,
     left: 0,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
     zIndex: 5,
   },
   inner: {

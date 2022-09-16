@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import {
+  StyleSheet, TextInput, View, Alert,
+} from 'react-native';
 import firebase from 'firebase';
 
 import CircleButton from '../components/CircleButton';
@@ -16,12 +18,11 @@ export default function MemoCreateScreen(props) {
       bodyText,
       updatedAt: new Date(),
     })
-      .then((docRef) => {
-        console.log('Created!', docRef.id);
+      .then(() => {
         navigation.goBack();
       })
-      .catch((error) => {
-        console.log('Error!', error);
+      .catch(() => {
+        Alert.alert('Error', 'Fail to create memo');
       });
   }
 
