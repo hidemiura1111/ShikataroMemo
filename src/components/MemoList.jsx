@@ -44,7 +44,7 @@ export default function MemoList(props) {
         onPress={() => { navigation.navigate('MemoDetail', { id: item.id }); }}
       >
         <View style={styles.memoInner}>
-          <Text style={styles.memoListItemTitle} numberOfLines={1}>{item.bodyText}</Text>
+          <Text style={styles.memoListItemTitle}>{item.bodyText}</Text>
           <Text style={styles.memoListItemDate}>{dateToString(item.updatedAt)}</Text>
         </View>
         <TouchableOpacity
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
   memoListItemTitle: {
     fontSize: 16,
     lineHeight: 32,
+    height: 32,
   },
   memoListItemDate: {
     fontSize: 12,

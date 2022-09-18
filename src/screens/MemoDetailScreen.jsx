@@ -37,7 +37,7 @@ export default function MemoDetailScreen(props) {
   return (
     <View style={styles.container}>
       <View style={styles.memoHeader}>
-        <Text style={styles.memoTitle} numberOfLines={1}>{memo && memo.bodyText}</Text>
+        <Text style={styles.memoTitle}>{memo && memo.bodyText}</Text>
         <Text style={styles.memoDate}>{memo && dateToString(memo.updatedAt)}</Text>
       </View>
       <ScrollView>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   memoTitle: {
     color: '#ffffff',
     fontSize: 20,
-    lineHeight: 32,
+    lineHeight: 40,
     fontWeight: 'bold',
   },
   memoDate: {
