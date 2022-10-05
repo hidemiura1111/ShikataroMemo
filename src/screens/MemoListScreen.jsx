@@ -22,37 +22,73 @@ export default function MemoListScreen(props) {
     });
   }, []);
 
-  // Get MemoList
+  // Get MemoList with Annonymous Login
+  // It is necessary to set enable AnonymousUsers in firebase console
+  // TODO: Add Loading Screen when fetching data
+  // TODO: Add Unsuscribe Function
+  // TODO: Add User register button or logout button 
   useEffect(() => {
-    const { currentUser } = firebase.auth();
-    const db = firebase.firestore();
-    let unsubscribe = () => { };
-
-    if (currentUser) {
-      setIsLoading(true);
-      const ref = db.collection(`users/${currentUser.uid}/memos`).orderBy('updatedAt', 'desc');
-      // Test to access with hard coded user id
-      // const ref = db.collection(`users/sC9fOZsKzhTjwmic9j1S9jBL7WJ3/memos`).orderBy('updatedAt', 'desc');
-      unsubscribe = ref.onSnapshot((snapshot) => {
-        const userMemos = [];
-        snapshot.forEach((doc) => {
-          const data = doc.data();
-          userMemos.push({
-            id: doc.id,
-            bodyText: data.bodyText,
-            updatedAt: data.updatedAt.toDate(),
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in.
+        const db = firebase.firestore();
+        const ref = db.collection(`users/${user.uid}/memos`).orderBy('updatedAt', 'desc');
+        ref.onSnapshot((snapshot) => {
+          const userMemos = [];
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            userMemos.push({
+              id: doc.id,
+              bodyText: data.bodyText,
+              updatedAt: data.updatedAt.toDate(),
+            });
           });
+          setMemos(userMemos);
+        }, () => {
+          Alert.alert('Fail to read memo');
         });
-        setMemos(userMemos);
-        setIsLoading(false);
-      }, () => {
-        setIsLoading(false);
-        Alert.alert('Fail to read memo');
-      });
-    }
-
-    return unsubscribe;
+      } else {
+        // No user is signed in. (Annonyous User)
+        firebase.auth().signInAnonymously()
+          .catch(() => {
+            Alert.alert('Try to restart App.');
+          });
+      }
+    });
   }, []);
+
+  /*
+  // Get MemoList by login user
+  const { currentUser } = firebase.auth();
+  const db = firebase.firestore();
+  let unsubscribe = () => { };
+
+  if (currentUser) {
+    setIsLoading(true);
+    const ref = db.collection(`users/${currentUser.uid}/memos`).orderBy('updatedAt', 'desc');
+    // Test to access with hard coded user id
+    // const ref = db.collection(`users/sC9fOZsKzhTjwmic9j1S9jBL7WJ3/memos`).orderBy('updatedAt', 'desc');
+    unsubscribe = ref.onSnapshot((snapshot) => {
+      const userMemos = [];
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        userMemos.push({
+          id: doc.id,
+          bodyText: data.bodyText,
+          updatedAt: data.updatedAt.toDate(),
+        });
+      });
+      setMemos(userMemos);
+      setIsLoading(false);
+    }, () => {
+      setIsLoading(false);
+      Alert.alert('Fail to read memo');
+    });
+  }
+
+  return unsubscribe;
+}, []);
+*/
 
   if (memos.length === 0) {
     return (
