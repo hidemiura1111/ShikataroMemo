@@ -6,9 +6,12 @@ import firebase from 'firebase';
 
 import MemoList from '../components/MemoList';
 import CircleButton from '../components/CircleButton';
-import LogoutButton from '../components/LogoutButton';
+
+// import LogOutButton from '../components/LogOutButton';
+
 import Button from '../components/Button';
 import Loading from '../components/Loading';
+import HeaderRightButton from '../components/HeaderRightButton';
 
 export default function MemoListScreen(props) {
   const { navigation } = props;
@@ -16,11 +19,11 @@ export default function MemoListScreen(props) {
   const [isLoading, setIsLoading] = useState(false);
 
   // Logout Button
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => <LogoutButton />,
-    });
-  }, []);
+  // useEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () => <LogoutButton />,
+  //   });
+  // }, []);
 
   // Get MemoList with Annonymous Login
   // It is necessary to set enable AnonymousUsers in firebase console
@@ -47,6 +50,12 @@ export default function MemoListScreen(props) {
         }, () => {
           Alert.alert('Fail to read memo');
         });
+
+        // Register or Logout button
+        navigation.setOptions({
+          headerRight: () => <HeaderRightButton currentUser={user} />,
+        });
+
       } else {
         // No user is signed in. (Annonyous User)
         firebase.auth().signInAnonymously()
