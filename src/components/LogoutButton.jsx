@@ -8,16 +8,27 @@ export default function LogoutButton() {
   const navigation = useNavigation();
 
   function handlePress() {
-    firebase.auth().signOut()
-      .then(() => {
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'Login' }],
-        });
-      })
-      .catch(() => {
-        Alert.alert('Fail to logout.');
-      });
+    Alert.alert('Log out', 'Are you sure you want to log out?', [
+      {
+        text: 'Cancel',
+        onPress: () => { },
+      },
+      {
+        text: 'OK',
+        onPress: () => {
+          firebase.auth().signOut()
+            .then(() => {
+              navigation.reset({
+                index: 0,
+                routes: [{ name: 'MemoList' }],
+              });
+            })
+            .catch(() => {
+              Alert.alert('Fail to logout.');
+            });
+        },
+      },
+    ]);
   }
 
   return (
