@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   StyleSheet, Text, TextInput, View, TouchableOpacity, Alert,
 } from 'react-native';
@@ -6,6 +6,7 @@ import firebase from 'firebase';
 
 import Button from '../components/Button';
 import Loading from '../components/Loading';
+import CancelLogin from '../components/CancelLogin';
 import { translateErrors } from '../utilities';
 
 export default function SignUpScreen(props) {
@@ -13,6 +14,12 @@ export default function SignUpScreen(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <CancelLogin />
+    });
+  }, []);
 
   function handlePress() {
     setIsLoading(true);

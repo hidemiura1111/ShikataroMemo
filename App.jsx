@@ -38,7 +38,13 @@ export default function App() {
           gestureDirection: 'horizontal',
         }}
       >
-        <Stack.Screen name="MemoList" component={MemoListScreen} />
+        <Stack.Screen
+          name="MemoList"
+          component={MemoListScreen}
+          options={{
+            cardStyleInterpolator: CardStyleInterpolators.forRevealFromBottomAndroid,
+          }}
+        />
         <Stack.Screen name="MemoDetail" component={MemoDetailScreen} />
         <Stack.Screen name="MemoEdit" component={MemoEditScreen} />
         <Stack.Screen name="MemoCreate" component={MemoCreateScreen} />
