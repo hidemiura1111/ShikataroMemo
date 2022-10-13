@@ -16,12 +16,27 @@ export default function SignUpScreen(props) {
 
   function handlePress() {
     setIsLoading(true);
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    const { currentUser } = firebase.auth();
+
+    if (!currentUser) {
+      return;
+    }
+
+    // Register User from Annonymous User
+    const credential = firebase.auth.EmailAuthProvider.credential(email, password);
+    currentUser.linkWithCredential(credential)
       .then(() => {
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'MemoList' }],
-        });
+        Alert.alert('Register Success', [
+          {
+            text: 'OK',
+            onPress: () => {
+              navigation.reset({
+                index: 0,
+                routes: [{ name: 'MemoList' }],
+              });
+            },
+          },
+        ]);
       })
       .catch((error) => {
         const errorMessage = translateErrors(error.code);
