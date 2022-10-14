@@ -10,7 +10,7 @@ export default function LogoutButton(props) {
   const navigation = useNavigation();
 
   function handlePress() {
-    Alert.alert('Log out', 'Are you sure you want to log out?', [
+    Alert.alert('Log out', 'Are you sure you want to logout?', [
       {
         text: 'Cancel',
         onPress: () => { },

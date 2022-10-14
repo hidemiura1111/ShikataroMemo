@@ -15,7 +15,7 @@ export default function MemoListScreen(props) {
   const [memos, setMemos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Get MemoList with Annonymous Login
+  // Get and set MemoList with Annonymous Login
   // It is necessary to set enable AnonymousUsers in firebase console
   useEffect(() => {
     setIsLoading(true);
@@ -65,12 +65,13 @@ export default function MemoListScreen(props) {
     };
   }, []);
 
+  // Display MemoList when no memo
   if (memos.length === 0) {
     return (
       <View style={emptyStyles.container}>
         <Loading isLoading={isLoading} />
         <View style={emptyStyles.inner}>
-          <Text style={emptyStyles.title}>Let&apos;s create first memo!!</Text>
+          <Text style={emptyStyles.title}>Let&apos;s create a first memo!!</Text>
           <Button
             style={emptyStyles.button}
             label="Create Memo"
@@ -81,6 +82,7 @@ export default function MemoListScreen(props) {
     );
   }
 
+  // Display MemoList when memo exists
   return (
     <View style={styles.container}>
       <MemoList memos={memos} />

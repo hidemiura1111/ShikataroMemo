@@ -26,7 +26,7 @@ export default function HeaderRightButton(props) {
         }}
         style={Styles.container}
       >
-        <Text style={Styles.label}>Register</Text>
+        <Text style={Styles.label}>Register/Login</Text>
       </TouchableOpacity>
     );
   }
