@@ -6,9 +6,6 @@ import firebase from 'firebase';
 
 import MemoList from '../components/MemoList';
 import CircleButton from '../components/CircleButton';
-
-// import LogOutButton from '../components/LogOutButton';
-
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 import HeaderRightButton from '../components/HeaderRightButton';
@@ -17,13 +14,6 @@ export default function MemoListScreen(props) {
   const { navigation } = props;
   const [memos, setMemos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  // Logout Button
-  // useEffect(() => {
-  //   navigation.setOptions({
-  //     headerRight: () => <LogoutButton />,
-  //   });
-  // }, []);
 
   // Get MemoList with Annonymous Login
   // It is necessary to set enable AnonymousUsers in firebase console
@@ -74,39 +64,6 @@ export default function MemoListScreen(props) {
       cleanupFuncs.memos();
     };
   }, []);
-
-  /*
-  // Get MemoList by login user
-  const { currentUser } = firebase.auth();
-  const db = firebase.firestore();
-  let unsubscribe = () => { };
-  
-  if (currentUser) {
-    setIsLoading(true);
-    const ref = db.collection(`users/${currentUser.uid}/memos`).orderBy('updatedAt', 'desc');
-    // Test to access with hard coded user id
-    // const ref = db.collection(`users/sC9fOZsKzhTjwmic9j1S9jBL7WJ3/memos`).orderBy('updatedAt', 'desc');
-    unsubscribe = ref.onSnapshot((snapshot) => {
-      const userMemos = [];
-      snapshot.forEach((doc) => {
-        const data = doc.data();
-        userMemos.push({
-          id: doc.id,
-          bodyText: data.bodyText,
-          updatedAt: data.updatedAt.toDate(),
-        });
-      });
-      setMemos(userMemos);
-      setIsLoading(false);
-    }, () => {
-      setIsLoading(false);
-      Alert.alert('Fail to read memo');
-    });
-  }
-  
-  return unsubscribe;
-  }, []);
-  */
 
   if (memos.length === 0) {
     return (
