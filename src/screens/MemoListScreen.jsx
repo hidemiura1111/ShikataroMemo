@@ -28,12 +28,14 @@ export default function MemoListScreen(props) {
   // Get MemoList with Annonymous Login
   // It is necessary to set enable AnonymousUsers in firebase console
   // TODO: Add Loading Screen when fetching data
-  // TODO: Add Unsuscribe Function
-  // TODO: Add User register button or logout button 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
+    const cleanupFuncs = {
+      auth: () => { },
+      memos: () => { },
+    }
+
+    cleanupFuncs.auth = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        // User is signed in.
         const db = firebase.firestore();
         const ref = db.collection(`users/${user.uid}/memos`).orderBy('updatedAt', 'desc');
         ref.onSnapshot((snapshot) => {
@@ -48,22 +50,26 @@ export default function MemoListScreen(props) {
           });
           setMemos(userMemos);
         }, () => {
-          Alert.alert('Fail to read memo');
+          // Alert.alert('Fail to read memo');
         });
 
         // Register or Logout button
         navigation.setOptions({
-          headerRight: () => <HeaderRightButton currentUser={user} />,
+          headerRight: () => <HeaderRightButton currentUser={user} cleanupFuncs={cleanupFuncs} />,
         });
 
       } else {
-        // No user is signed in. (Annonyous User)
         firebase.auth().signInAnonymously()
           .catch(() => {
             Alert.alert('Try to restart App.');
           });
       }
     });
+
+    return () => {
+      cleanupFuncs.auth();
+      cleanupFuncs.memos();
+    };
   }, []);
 
   /*
@@ -71,7 +77,7 @@ export default function MemoListScreen(props) {
   const { currentUser } = firebase.auth();
   const db = firebase.firestore();
   let unsubscribe = () => { };
-
+  
   if (currentUser) {
     setIsLoading(true);
     const ref = db.collection(`users/${currentUser.uid}/memos`).orderBy('updatedAt', 'desc');
@@ -94,10 +100,10 @@ export default function MemoListScreen(props) {
       Alert.alert('Fail to read memo');
     });
   }
-
+  
   return unsubscribe;
-}, []);
-*/
+  }, []);
+  */
 
   if (memos.length === 0) {
     return (

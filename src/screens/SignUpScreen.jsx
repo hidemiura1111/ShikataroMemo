@@ -33,17 +33,15 @@ export default function SignUpScreen(props) {
     const credential = firebase.auth.EmailAuthProvider.credential(email, password);
     currentUser.linkWithCredential(credential)
       .then(() => {
-        Alert.alert('Register Success', [
-          {
-            text: 'OK',
-            onPress: () => {
-              navigation.reset({
-                index: 0,
-                routes: [{ name: 'MemoList' }],
-              });
-            },
+        Alert.alert('Register Success', 'Success to register with the email and password.', [{
+          text: 'OK',
+          onPress: () => {
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'MemoList' }],
+            });
           },
-        ]);
+        },]);
       })
       .catch((error) => {
         const errorMessage = translateErrors(error.code);

@@ -7,7 +7,7 @@ import { shape, func } from "prop-types";
 import LogOutButton from "./LogoutButton";
 
 export default function HeaderRightButton(props) {
-  const { currentUser } = props;
+  const { currentUser, cleanupFuncs } = props;
   const navigation = useNavigation();
 
   if (!currentUser) {
@@ -33,12 +33,16 @@ export default function HeaderRightButton(props) {
 
   // Logged in User, Log out button
   return (
-    <LogOutButton />
+    <LogOutButton cleanupFuncs={cleanupFuncs} />
   );
 }
 
 HeaderRightButton.proptypes = {
   currentUser: shape().isRequired,
+  cleanupFuncs: shape({
+    auth: func,
+    memos: func,
+  }).isRequired,
 };
 
 const Styles = StyleSheet.create({

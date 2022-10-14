@@ -3,8 +3,10 @@ import {
 } from 'react-native';
 import firebase from 'firebase';
 import { useNavigation } from '@react-navigation/native';
+import { shape, func } from 'prop-types';
 
-export default function LogoutButton() {
+export default function LogoutButton(props) {
+  const { cleanupFuncs } = props;
   const navigation = useNavigation();
 
   function handlePress() {
@@ -16,6 +18,8 @@ export default function LogoutButton() {
       {
         text: 'OK',
         onPress: () => {
+          cleanupFuncs.auth();
+          cleanupFuncs.memos();
           firebase.auth().signOut()
             .then(() => {
               navigation.reset({
@@ -38,9 +42,16 @@ export default function LogoutButton() {
   );
 }
 
+LogoutButton.propTypes = {
+  cleanupFuncs: shape({
+    auth: func,
+    memos: func,
+  }).isRequired,
+};
+
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 18,
+    paddingHorizontal: 12,
     paddingVertical: 4,
   },
   label: {

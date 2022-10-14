@@ -23,8 +23,8 @@ export default function CancelLogin() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 8,
-    marginHorizontal: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 4,
   },
   label: {
     fontSize: 14,
