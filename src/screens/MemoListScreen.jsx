@@ -27,8 +27,9 @@ export default function MemoListScreen(props) {
 
   // Get MemoList with Annonymous Login
   // It is necessary to set enable AnonymousUsers in firebase console
-  // TODO: Add Loading Screen when fetching data
   useEffect(() => {
+    setIsLoading(true);
+
     const cleanupFuncs = {
       auth: () => { },
       memos: () => { },
@@ -49,8 +50,9 @@ export default function MemoListScreen(props) {
             });
           });
           setMemos(userMemos);
+          setIsLoading(false);
         }, () => {
-          // Alert.alert('Fail to read memo');
+          setIsLoading(false);
         });
 
         // Register or Logout button
@@ -62,7 +64,8 @@ export default function MemoListScreen(props) {
         firebase.auth().signInAnonymously()
           .catch(() => {
             Alert.alert('Try to restart App.');
-          });
+          })
+          .then(() => { setIsLoading(false); });
       }
     });
 
