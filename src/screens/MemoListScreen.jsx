@@ -72,7 +72,7 @@ export default function MemoListScreen(props) {
   if (memos.length === 0) {
     return (
       <View style={emptyStyles.container}>
-        <ImageBackground source={background_pink} style={emptyStyles.image} >
+        <ImageBackground source={background_pink} style={emptyStyles.backgroundImage} >
           <Loading isLoading={isLoading} />
           <View style={emptyStyles.inner}>
             <Text style={emptyStyles.title}>Let&apos;s create a first memo!!</Text>
@@ -90,7 +90,7 @@ export default function MemoListScreen(props) {
   // Display MemoList when memo exists
   return (
     <View style={styles.container} >
-      <ImageBackground source={background_green} style={styles.image} >
+      <ImageBackground source={background_green} style={styles.backgroundImage} >
         <MemoList memos={memos} />
         <CircleButton
           name="plus"
@@ -108,7 +108,7 @@ const emptyStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#f6e0e1',
   },
-  image: {
+  backgroundImage: {
     flex: 1,
     justifyContent: 'center',
   },
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F0F4F8',
   },
-  image: {
+  backgroundImage: {
     flex: 1,
     justifyContent: 'center',
   },
