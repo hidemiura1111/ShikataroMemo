@@ -28,8 +28,8 @@ export default function App() {
       <Stack.Navigator
         initialRouteName='MemoList'
         screenOptions={{
-          headerStyle: { backgroundColor: '#467FD3' },
-          headerTitleStyle: { color: '#ffffff' },
+          headerStyle: { backgroundColor: '#97a797' },
+          headerTitleStyle: { color: '#ffffff', fontWeight: 'bold' },
           headerTitle: 'ShikataroMemo',
           headerTintColor: '#ffffff',
           headerBackTitle: 'Back', // No need in Android App

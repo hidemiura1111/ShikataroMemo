@@ -1,5 +1,5 @@
 import {
-  StyleSheet, View, Text, Alert,
+  StyleSheet, View, Text, Alert, ImageBackground,
 } from 'react-native';
 import { useEffect, useState } from 'react';
 import firebase from 'firebase';
@@ -9,6 +9,9 @@ import CircleButton from '../components/CircleButton';
 import Button from '../components/Button';
 import Loading from '../components/Loading';
 import HeaderRightButton from '../components/HeaderRightButton';
+
+import background from '../../assets/splash.png';
+import background_pink from '../../assets/background_pink.png';
 
 export default function MemoListScreen(props) {
   const { navigation } = props;
@@ -69,53 +72,70 @@ export default function MemoListScreen(props) {
   if (memos.length === 0) {
     return (
       <View style={emptyStyles.container}>
-        <Loading isLoading={isLoading} />
-        <View style={emptyStyles.inner}>
-          <Text style={emptyStyles.title}>Let&apos;s create a first memo!!</Text>
-          <Button
-            style={emptyStyles.button}
-            label="Create Memo"
-            onPress={() => { navigation.navigate('MemoCreate'); }}
-          />
-        </View>
+        <ImageBackground source={background_pink} style={emptyStyles.image} >
+          <Loading isLoading={isLoading} />
+          <View style={emptyStyles.inner}>
+            <Text style={emptyStyles.title}>Let&apos;s create a first memo!!</Text>
+            <Button
+              style={emptyStyles.button}
+              label="Create Memo"
+              onPress={() => { navigation.navigate('MemoCreate'); }}
+            />
+          </View>
+        </ImageBackground>
       </View>
     );
   }
 
   // Display MemoList when memo exists
   return (
-    <View style={styles.container}>
-      <MemoList memos={memos} />
-      <CircleButton
-        name="plus"
-        onPress={() => { navigation.navigate('MemoCreate'); }}
-      />
+    <View style={styles.container} >
+      <ImageBackground source={background} style={styles.image} >
+        <MemoList memos={memos} />
+        <CircleButton
+          name="plus"
+          onPress={() => { navigation.navigate('MemoCreate'); }}
+        />
+      </ImageBackground>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F0F4F8',
-  },
-});
 
 const emptyStyles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#f6e0e1',
+  },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
   },
   inner: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   title: {
+    color: '#4d715f',
     fontSize: 18,
     marginBottom: 24,
+    fontWeight: 'bold',
   },
   button: {
     alignSelf: 'center',
+    backgroundColor: '#97a797',
+  },
+});
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F0F4F8',
+  },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+    resizeMode: 'cover',
   },
 });

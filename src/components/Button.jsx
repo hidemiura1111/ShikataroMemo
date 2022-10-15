@@ -23,7 +23,7 @@ Button.defaultProps = {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    backgroundColor: '#467FD3',
+    backgroundColor: '#f0cbcd',
     borderRadius: 4,
     alignSelf: 'flex-start',
     marginBottom: 24,
@@ -34,5 +34,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 32,
     color: '#FFFFFF',
+    fontWeight: 'bold',
   },
 });

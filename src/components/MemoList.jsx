@@ -81,7 +81,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   memoListItem: {
-    backgroundColor: '#ffffff',
+    // backgroundColor: '#ffffff',
+    backgroundColor: '#f0cbcd',
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 16,
