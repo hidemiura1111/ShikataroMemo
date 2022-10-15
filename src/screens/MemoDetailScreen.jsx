@@ -1,5 +1,5 @@
 import {
-  StyleSheet, Text, View, ScrollView, Alert,
+  StyleSheet, Text, View, ScrollView, Alert, ImageBackground,
 } from 'react-native';
 import { useEffect, useState } from 'react';
 import { shape, string } from 'prop-types';
@@ -7,6 +7,8 @@ import firebase from 'firebase';
 
 import CircleButton from '../components/CircleButton';
 import { dateToString } from '../utilities';
+
+import background_clear from '../../assets/background_clear.png';
 
 export default function MemoDetailScreen(props) {
   const { navigation, route } = props;
@@ -40,18 +42,20 @@ export default function MemoDetailScreen(props) {
         <Text style={styles.memoTitle}>{memo && memo.bodyText}</Text>
         <Text style={styles.memoDate}>{memo && dateToString(memo.updatedAt)}</Text>
       </View>
-      <ScrollView>
-        <View style={styles.memoBodyInner}>
-          <Text style={styles.memoText}>
-            {memo && memo.bodyText}
-          </Text>
-        </View>
-      </ScrollView>
-      <CircleButton
-        style={{ top: 60, bottom: 'auto' }}
-        name="edit-3"
-        onPress={() => { navigation.navigate('MemoEdit', { id: memo.id, bodyText: memo.bodyText }); }}
-      />
+      <ImageBackground source={background_clear} style={styles.backgroundImage} >
+        <ScrollView>
+          <View style={styles.memoBodyInner}>
+            <Text style={styles.memoText}>
+              {memo && memo.bodyText}
+            </Text>
+          </View>
+        </ScrollView>
+        <CircleButton
+          style={{ top: -30, bottom: 'auto' }}
+          name="edit-3"
+          onPress={() => { navigation.navigate('MemoEdit', { id: memo.id, bodyText: memo.bodyText }); }}
+        />
+      </ImageBackground>
     </View>
   );
 }
@@ -84,6 +88,10 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 12,
     lineHeight: 16,
+  },
+  backgroundImage: {
+    flex: 1,
+    justifyContent: 'center',
   },
   memoBodyInner: {
     paddingTop: 32,
