@@ -111,10 +111,12 @@ const emptyStyles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     justifyContent: 'center',
+    width: '100%',
   },
   inner: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 100,
   },
   title: {
     color: '#4d715f',
