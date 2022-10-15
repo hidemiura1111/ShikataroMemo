@@ -4,7 +4,7 @@ export default function AppBar() {
   return (
     <View style={styles.appbar}>
       <View style={styles.appbarInner}>
-        <Text style={styles.appbarTitle}>SimpleMemoApp</Text>
+        <Text style={styles.appbarTitle}>ShikataroMemo</Text>
         <Text style={styles.appbarRight}>Log out</Text>
       </View>
     </View>

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "SimpleMemoApp",
-    "slug": "SimpleMemoApp",
+    "name": "ShikataroMemo",
+    "slug": "ShikataroMemo",
     "version": "1.0.0",
     "privacy": "unlisted",
     "orientation": "portrait",

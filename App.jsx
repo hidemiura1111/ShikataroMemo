@@ -30,7 +30,7 @@ export default function App() {
         screenOptions={{
           headerStyle: { backgroundColor: '#467FD3' },
           headerTitleStyle: { color: '#ffffff' },
-          headerTitle: 'SimpleMemoApp',
+          headerTitle: 'ShikataroMemo',
           headerTintColor: '#ffffff',
           headerBackTitle: 'Back', // No need in Android App
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
