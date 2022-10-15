@@ -10,7 +10,7 @@ import Button from '../components/Button';
 import Loading from '../components/Loading';
 import HeaderRightButton from '../components/HeaderRightButton';
 
-import background from '../../assets/splash.png';
+import background_green from '../../assets/background_green.png';
 import background_pink from '../../assets/background_pink.png';
 
 export default function MemoListScreen(props) {
@@ -90,7 +90,7 @@ export default function MemoListScreen(props) {
   // Display MemoList when memo exists
   return (
     <View style={styles.container} >
-      <ImageBackground source={background} style={styles.image} >
+      <ImageBackground source={background_green} style={styles.image} >
         <MemoList memos={memos} />
         <CircleButton
           name="plus"
@@ -136,6 +136,5 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     justifyContent: 'center',
-    resizeMode: 'cover',
   },
 });
