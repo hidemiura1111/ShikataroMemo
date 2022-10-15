@@ -1,11 +1,13 @@
 import {
-  StyleSheet, TextInput, View, Alert,
+  StyleSheet, TextInput, View, Alert, ImageBackground,
 } from 'react-native';
 import { useState } from 'react';
 import { shape, string } from 'prop-types';
 import firebase from 'firebase';
 
 import CircleButton from '../components/CircleButton';
+
+import background_clear from '../../assets/background_clear.png';
 
 export default function MemoEditScreen(props) {
   const { navigation, route } = props;
@@ -32,18 +34,20 @@ export default function MemoEditScreen(props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          value={body}
-          multiline
-          style={styles.input}
-          onChangeText={(text) => { setBody(text); }}
+      <ImageBackground source={background_clear} style={styles.backgroundImage} >
+        <View style={styles.inputContainer}>
+          <TextInput
+            value={body}
+            multiline
+            style={styles.input}
+            onChangeText={(text) => { setBody(text); }}
+          />
+        </View>
+        <CircleButton
+          name="check"
+          onPress={handlePress}
         />
-      </View>
-      <CircleButton
-        name="check"
-        onPress={handlePress}
-      />
+      </ImageBackground>
     </View>
   );
 }
@@ -57,6 +61,10 @@ MemoEditScreen.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  backgroundImage: {
+    flex: 1,
+    justifyContent: 'center',
   },
   inputContainer: {
     flex: 1,
