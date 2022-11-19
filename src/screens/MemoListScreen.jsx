@@ -1,5 +1,5 @@
 import {
-  StyleSheet, View, Text, Alert, ImageBackground,
+  StyleSheet, View, Text, Alert, ImageBackground, Image,
 } from 'react-native';
 import { useEffect, useState } from 'react';
 import firebase from 'firebase';
@@ -12,6 +12,7 @@ import HeaderRightButton from '../components/HeaderRightButton';
 
 import background_green from '../../assets/background_green.png';
 import background_pink from '../../assets/background_pink.png';
+import bg_pic from '../../assets/bg_shikataro.png';
 
 export default function MemoListScreen(props) {
   const { navigation } = props;
@@ -72,17 +73,16 @@ export default function MemoListScreen(props) {
   if (memos.length === 0) {
     return (
       <View style={emptyStyles.container}>
-        <ImageBackground source={background_pink} style={emptyStyles.backgroundImage} >
-          <Loading isLoading={isLoading} />
-          <View style={emptyStyles.inner}>
-            <Text style={emptyStyles.title}>Let&apos;s create a first memo!!</Text>
-            <Button
-              style={emptyStyles.button}
-              label="Create Memo"
-              onPress={() => { navigation.navigate('MemoCreate'); }}
-            />
-          </View>
-        </ImageBackground>
+        <Loading isLoading={isLoading} />
+        <View style={emptyStyles.inner}>
+          <Text style={emptyStyles.title}>Let&apos;s create a first memo!!</Text>
+          <Button
+            style={emptyStyles.button}
+            label="Create Memo"
+            onPress={() => { navigation.navigate('MemoCreate'); }}
+          />
+        </View>
+        <Image source={bg_pic} style={emptyStyles.backgroundImage} />
       </View>
     );
   }
@@ -109,9 +109,11 @@ const emptyStyles = StyleSheet.create({
     backgroundColor: '#f6e0e1',
   },
   backgroundImage: {
-    flex: 1,
-    justifyContent: 'center',
-    width: '100%',
+    position: 'absolute',
+    zIndex: -1,
+    bottom: 40,
+    resizeMode: 'contain',
+    height: '45%',
   },
   inner: {
     justifyContent: 'center',
