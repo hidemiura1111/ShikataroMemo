@@ -10,8 +10,6 @@ import Button from '../components/Button';
 import Loading from '../components/Loading';
 import HeaderRightButton from '../components/HeaderRightButton';
 
-import background_green from '../../assets/background_green.png';
-import background_pink from '../../assets/background_pink.png';
 import bg_pic from '../../assets/bg_shikataro.png';
 
 export default function MemoListScreen(props) {
@@ -90,13 +88,12 @@ export default function MemoListScreen(props) {
   // Display MemoList when memo exists
   return (
     <View style={styles.container} >
-      <ImageBackground source={background_green} style={styles.backgroundImage} >
-        <MemoList memos={memos} />
-        <CircleButton
-          name="plus"
-          onPress={() => { navigation.navigate('MemoCreate'); }}
-        />
-      </ImageBackground>
+      <MemoList memos={memos} />
+      <CircleButton
+        name="plus"
+        onPress={() => { navigation.navigate('MemoCreate'); }}
+      />
+      <Image source={bg_pic} style={styles.backgroundImage} />
     </View>
   );
 }
@@ -110,9 +107,9 @@ const emptyStyles = StyleSheet.create({
   },
   backgroundImage: {
     position: 'absolute',
+    resizeMode: 'contain',
     zIndex: -1,
     bottom: 40,
-    resizeMode: 'contain',
     height: '45%',
   },
   inner: {
@@ -135,10 +132,14 @@ const emptyStyles = StyleSheet.create({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F0F4F8',
+    backgroundColor: '#97a797',
   },
   backgroundImage: {
-    flex: 1,
-    justifyContent: 'center',
+    position: 'absolute',
+    resizeMode: 'contain',
+    zIndex: -1,
+    mergin: 'auto',
+    bottom: 40,
+    height: '45%',
   },
 });
