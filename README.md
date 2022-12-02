@@ -26,4 +26,8 @@ npm install
 Make new file `env.js` from `env.js.sample`, and add firebase config from Firebase
 
 ### Start
+```
 expo start --tunnel
+or
+npm start --tunnel
+```
