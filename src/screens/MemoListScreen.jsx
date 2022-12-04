@@ -1,5 +1,5 @@
 import {
-  StyleSheet, View, Text, Alert, ImageBackground, Image,
+  StyleSheet, View, Text, Alert, Image,
 } from 'react-native';
 import { useEffect, useState } from 'react';
 import firebase from 'firebase';
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     resizeMode: 'contain',
     zIndex: -1,
-    mergin: 'auto',
+    alignSelf: 'center',
     bottom: 40,
     height: '45%',
   },
