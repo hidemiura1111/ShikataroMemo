@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import {
-  StyleSheet, Text, TextInput, View, TouchableOpacity, Alert, ImageBackground,
+  StyleSheet, Text, TextInput, View, TouchableOpacity, Alert, Image,
 } from 'react-native';
 import firebase from 'firebase';
 
@@ -9,7 +9,7 @@ import Loading from '../components/Loading';
 import { translateErrors } from '../utilities';
 import CancelLogin from '../components/CancelLogin';
 
-import background_pink from '../../assets/background_pink.png';
+import bg_pic from '../../assets/bg_shikataro.png';
 
 export default function LoginScreen(props) {
   const { navigation } = props;
@@ -44,47 +44,46 @@ export default function LoginScreen(props) {
   return (
     <View style={styles.container}>
       <Loading isLoading={isLoading} />
-      <ImageBackground source={background_pink} style={styles.backgroundImage} >
-        <View style={styles.inner}>
-          <Text style={styles.title}>Login</Text>
-          <TextInput
-            style={styles.input}
-            value={email}
-            onChangeText={(text) => setEmail(text)}
-            autoCapitalize="none"
-            keyboardType="email-address"
-            placeholder="Email Address"
-            textContentType="emailAddress"
-          />
-          <TextInput
-            style={styles.input}
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-            autoCapitalize="none"
-            placeholder="Password"
-            secureTextEntry
-            textContentType="password"
-          />
-          <Button
-            style={styles.button}
-            label="Submit"
-            onPress={handlePress}
-          />
-          <View style={styles.footer}>
-            <Text style={styles.footerText}>Not Registered?</Text>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.reset({
-                  index: 0,
-                  routes: [{ name: 'SignUp' }],
-                });
-              }}
-            >
-              <Text style={styles.footerLink}>Sign up here!</Text>
-            </TouchableOpacity>
-          </View>
+      <View style={styles.inner}>
+        <Text style={styles.title}>Login</Text>
+        <TextInput
+          style={styles.input}
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          placeholder="Email Address"
+          textContentType="emailAddress"
+        />
+        <TextInput
+          style={styles.input}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+          autoCapitalize="none"
+          placeholder="Password"
+          secureTextEntry
+          textContentType="password"
+        />
+        <Button
+          style={styles.button}
+          label="Submit"
+          onPress={handlePress}
+        />
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>Not Registered?</Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.reset({
+                index: 0,
+                routes: [{ name: 'SignUp' }],
+              });
+            }}
+          >
+            <Text style={styles.footerLink}>Sign up here!</Text>
+          </TouchableOpacity>
         </View>
-      </ImageBackground>
+      </View>
+      <Image source={bg_pic} style={styles.backgroundImage} />
     </View>
   );
 }
@@ -92,7 +91,7 @@ export default function LoginScreen(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0cbcd',
+    backgroundColor: '#f6e0e1',
   },
   backgroundImage: {
     flex: 1,
@@ -131,5 +130,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 24,
     color: '#467FD3',
+  },
+  backgroundImage: {
+    position: 'absolute',
+    resizeMode: 'contain',
+    zIndex: -1,
+    alignSelf: 'center',
+    bottom: 40,
+    height: '45%',
   },
 });
